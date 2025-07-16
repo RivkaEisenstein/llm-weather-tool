@@ -3,8 +3,8 @@ import json
 import os
 import asyncio
 
-api_key = "sk-4f66bccb8392429760c76c8d53c54bc72b7faeced182872c"
-url = "https://chat-api.malkabruk.co.il/openai"
+api_key = ""
+url = ""
 
 
 # --- Headers for API requests ---
