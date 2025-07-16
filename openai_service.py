@@ -2,10 +2,18 @@ import requests
 import json
 import os
 import asyncio
+from dotenv import load_dotenv 
 
-api_key = ""
-url = ""
+load_dotenv()
 
+api_key = os.getenv("OPENAI_API_KEY")
+url = os.getenv("OPENAI_API_URL")
+
+# וודא שהמשתנים נטענו בהצלחה
+if not api_key:
+    raise ValueError("OPENAI_API_KEY not found in .env file or environment variables.")
+if not url:
+    raise ValueError("OPENAI_API_URL not found in .env file or environment variables.")
 
 # --- Headers for API requests ---
 headers = {
@@ -54,7 +62,7 @@ async def openai_chat_completion(message: str):
             "messages": messages,
             "tools": tools_weather,
             "tool_choice": "required"
-        },verify= False)
+        }, verify=False) # verify=False should be used with caution in production
 
         response.raise_for_status()
     except requests.exceptions.HTTPError as http_err:
@@ -121,7 +129,7 @@ async def openai_chat_completion(message: str):
             "model": "gpt-4o-mini",
             "messages": messages,
             "tools": tools_weather
-        },verify = False)
+        }, verify=False) # verify=False should be used with caution in production
         response2.raise_for_status()
     except requests.exceptions.HTTPError as http_err:
         print(f"HTTP error occurred in second request: {http_err} - {response2.text if 'response2' in locals() else 'No response2 object'}")

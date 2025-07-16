@@ -1,0 +1,18 @@
+# Environment variables
+.env
+
+# Python specific files
+__pycache__/
+*.pyc
+*.pyd
+.Python
+env/
+venv/
+.pytest_cache/
+
+# IDE specific files (e.g., VS Code)
+.vscode/
+
+# Operating System Files
+.DS_Store
+Thumbs.db
